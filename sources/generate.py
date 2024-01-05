@@ -12,6 +12,8 @@ from generator import Generator
 from config import yelp_hps, gyafc_hps, device
 
 import argparse
+import nltk
+from nltk.tokenize import word_tokenize
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Parametrs of the generator.")
@@ -26,12 +28,31 @@ def generate_file(generator, infile ,outfile, required_style):
 
     with open(infile, 'r') as fin:
         src_lines = fin.readlines()
-
+        
+    ################################    
+        
+    # tokenize with nltk
+    src_lines = [word_tokenize(line) for line in src_lines]
+    
+    # convert to lowercase
+    src_lines = [[token.lower() for token in line] for line in src_lines]
+    
+    # if token contains digits, replace it with __NUM
+    for line in src_lines:
+        for i in range(len(line)):
+            if any(char.isdigit() for char in line[i]):
+                line[i] = '__NUM'
+                
+    src_lines = [' '.join(line) for line in src_lines]
+    
+    ################################
 
     with open(outfile, 'w') as fout:
 
         for i, line in enumerate(src_lines):
             src_sent = line.strip()
+            
+            
 
             out_sent, info = generator.generate_one(src_sent, required_style)
             if len(out_sent) == 0:
@@ -74,9 +95,21 @@ def main():
 
         tgt1_file = "../outs/gyafc_to1.txt"
         tgt0_file = "../outs/gyafc_to0.txt"
+        
+        # tgt1_prefix = "../outs/ours_to1"
+        # tgt0_prefix = "../outs/ours_to0"
 
-        src1_file = "../inps/informal.txt"
-        src0_file = "../inps/formal.txt"
+        # tgt1_file = "../outs/ours_to1.txt"
+        # tgt0_file = "../outs/ours_to0.txt"
+
+        # src1_file = "../inps/informal.txt"
+        # src0_file = "../inps/formal.txt"
+        
+        src1_file = "../inps/gyafc_informal.txt"
+        src0_file = "../inps/gyafc_formal.txt"
+        
+        # src1_file = "../inps/ours_informal.txt"
+        # src0_file = "../inps/ours_formal.txt"
 
     generator = Generator(hps, device)
 

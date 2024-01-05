@@ -376,6 +376,11 @@ class Tool(object):
             return sents
 
         sents = data[bi*self._bsz : (bi+1)*self._bsz]
+        
+        # print('len(sents): ', len(sents))
+        # print('self._bsz: ', self._bsz)
+        # print('len(data): ', len(data))
+        
         if len(sents) < self._bsz:
             sents = sents + random.sample(data, self._bsz-len(sents))
         return sents

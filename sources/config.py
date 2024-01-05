@@ -112,13 +112,21 @@ gyafc_hps = HParams(
    pre_valid_log_path="../log/gyafc_pre_valid_log.txt",
    # ----------------------------
 
-   vocab_path="../corpus/gyafc_vocab.txt",
+   # vocab_path="../corpus/gyafc_vocab.txt",
 
-   unpaired_train_data="../corpus/gyafc_unpaired_train.json",
-   unpaired_valid_data="../corpus/gyafc_unpaired_valid.json",
+   # unpaired_train_data="../corpus/gyafc_unpaired_train.json",
+   # unpaired_valid_data="../corpus/gyafc_unpaired_valid.json",
 
-   paired_train_data="../corpus/gyafc_paired_train.json",
-   paired_valid_data="../corpus/gyafc_paired_valid.json",
+   # paired_train_data="../corpus/gyafc_paired_train.json",
+   # paired_valid_data="../corpus/gyafc_paired_valid.json",
+
+   vocab_path="../corpus/full_gyafc_vocab.txt",
+
+   unpaired_train_data="../corpus/full_gyafc_unpaired_train.json",
+   unpaired_valid_data="../corpus/full_gyafc_unpaired_val.json",
+
+   paired_train_data="../corpus/full_gyafc_paired_train.json",
+   paired_valid_data="../corpus/full_gyafc_paired_val.json",
 
    ckpt_path="../ckpts/" # the path to save checkpoints.
 

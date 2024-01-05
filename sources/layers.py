@@ -35,7 +35,7 @@ class Encoder(nn.Module):
         else:
             # Dynamic RNN
             packed = torch.nn.utils.rnn.pack_padded_sequence(embed_seq,
-                input_lens, batch_first=True, enforce_sorted=False)
+                input_lens.cpu(), batch_first=True, enforce_sorted=False)
             outputs, (state_h, state_c) = self.rnn(packed, None)
             # outputs: (B, L, 2*H)
             # state: (num_layers*num_directions, B, H)

@@ -83,7 +83,7 @@ def main():
 
     print ("hyper-patameters:")
     print (hps)
-    input ("please check the hyper-parameters, and then press any key to continue >")
+    # input ("please check the hyper-parameters, and then press any key to continue >")
 
     generator = Seq2Seq(hps, device)
     generator = generator.to(device)
@@ -93,7 +93,7 @@ def main():
 
     pretrain_method = hps.pretrain_method
 
-    pretrain(generator, tool, hps, device, pretrain_method)
+    # pretrain(generator, tool, hps, device, pretrain_method)
     train(generator, discriminator, tool, hps, device, pretrain_method)
 
 
